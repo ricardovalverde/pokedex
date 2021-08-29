@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_Main">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_Pokemons"
+        style="@style/cardViewPokemons"
+        android:background="@color/white"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_view_pokemon_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="end|bottom"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+
+            tools:src="@drawable/pngpokemon" />
+
+        <TextView
+            android:id="@+id/text_view_name_pokemon"
+            style="@style/textViewMainCard"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Pokemon"
+            android:textColor="@color/black"
+            tools:text="Pokemons"
+            tools:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/text_view_id_pokemon"
+            style="@style/textViewMainCard"
+            android:layout_gravity="end|top"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="Pokemon"
+            android:textColor="@color/text_gray"
+            tools:text="Pokemons"
+            tools:textColor="@color/text_gray" />
+
+
+        <TextView
+            android:id="@+id/text_view_type1_pokemon"
+            style="@style/textViewMainCard"
+            android:layout_gravity="start|bottom"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/type_background"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            tools:text="Pokemons"
+            tools:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/text_view_type2_pokemon"
+            style="@style/textViewMainCard"
+            android:layout_gravity="start|bottom"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/type_background"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            tools:text="Pokemons"
+            tools:textColor="@color/black" />
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
