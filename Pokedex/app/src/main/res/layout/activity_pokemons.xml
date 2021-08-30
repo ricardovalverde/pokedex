@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_view_flipper"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_pokemons"
+
+    <ImageView
+        android:id="@+id/pikachu_gif"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        tools:src="@drawable/pikachu" />
+
+    <ImageView
+        android:id="@+id/error_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@drawable/pngpokemon" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_pokemons" />
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:background="@color/background_Main">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_pokemons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_pokemons" />
+    </LinearLayout>
+</ViewFlipper>

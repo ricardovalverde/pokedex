@@ -1,6 +1,5 @@
 package com.example.pokedex.presentation.pokemons
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pokedex.data.model.ApiService
@@ -12,15 +11,17 @@ import retrofit2.Response
 
 class PokemonsViewModel : ViewModel() {
     val pokemonsLiveData: MutableLiveData<List<Pokemon>> = MutableLiveData()
+    val viewFlipper: MutableLiveData<Int> = MutableLiveData()
 
     fun getPokemons() {
         val listPokemons: MutableList<Pokemon> = mutableListOf()
 
-        for (id in 1..200) {
+        for (id in 1..3) {
             ApiService.service.getPokemonList(id).enqueue(object : Callback<PokemonBodyResponse> {
                 override fun onResponse(
                     call: Call<PokemonBodyResponse>,
                     response: Response<PokemonBodyResponse>
+
                 ) {
                     when {
                         response.isSuccessful -> {
@@ -28,16 +29,22 @@ class PokemonsViewModel : ViewModel() {
                                 val pokemon = pokemonBodyResponse.getPokemon()
                                 listPokemons.add(pokemon)
                             }
+                            viewFlipper.value = VIEW_FLIPPER_LINEAR_LAYOUT
                             pokemonsLiveData.value = listPokemons.sortedBy { it.id }
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<PokemonBodyResponse>, t: Throwable) {
-                    Log.d("CodeError", "Erro ${t.message}")
+                    viewFlipper.value = VIEW_FLIPPER_ERROR_IMAGE
                 }
-
             })
         }
     }
+
+    companion object {
+        private const val VIEW_FLIPPER_ERROR_IMAGE = 1
+        private const val VIEW_FLIPPER_LINEAR_LAYOUT = 2
+    }
 }
+

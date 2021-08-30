@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.databinding.ItemPokemonsBinding
-import com.example.pokedex.util.Color
+import com.example.pokedex.util.Colors
 import com.squareup.picasso.Picasso
 
 
@@ -43,12 +43,12 @@ class PokemonViewHolder(binding: ItemPokemonsBinding, private val context: Conte
         type1.text = pokemon.type1.type
         type2.text = pokemon.type2?.type
 
-        cardViewBackGround.setCardBackgroundColor(Color.findColor(pokemon.type1.type, context))
-        Color.setBackgroundColor(pokemon.type1.type, context, type1)
+        cardViewBackGround.setCardBackgroundColor(Colors.findColor(pokemon.type1.type, context))
+        Colors.setBackgroundColor(pokemon.type1.type, context, type1)
 
         pokemon.type2?.type.let {
             type2.setBackgroundResource(R.drawable.type_background)
-            Color.setBackgroundColor(it, context, type2)
+            Colors.setBackgroundColor(it, context, type2)
         }
 
         Picasso.get().load(pokemon.image.image).into(image)
