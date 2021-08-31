@@ -8,27 +8,39 @@ import com.example.pokedex.R
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.databinding.ItemPokemonsBinding
 import com.example.pokedex.util.Colors
-import com.squareup.picasso.Picasso
+import com.example.pokedex.util.Images
 
 
-class PokemonAdapter(private val list_pokemons: List<Pokemon>, private val context: Context) :
-    RecyclerView.Adapter<PokemonViewHolder>() {
+class PokemonAdapter(
+    private val list_pokemons: List<Pokemon>,
+    private val context: Context,
+    private val onItemClickListener: (pokemon: Pokemon) -> Unit
 
+) : RecyclerView.Adapter<PokemonViewHolder>() {
+    private lateinit var binding: ItemPokemonsBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
-        val binding =
+        binding =
             ItemPokemonsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PokemonViewHolder(binding, context)
     }
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-        holder.bind(list_pokemons[position])
+        holder.bind(list_pokemons[position], binding, onItemClickListener)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
     override fun getItemCount() = list_pokemons.count()
 }
 
-class PokemonViewHolder(binding: ItemPokemonsBinding, private val context: Context) :
-    RecyclerView.ViewHolder(binding.root) {
+class PokemonViewHolder(
+    binding: ItemPokemonsBinding,
+    private val context: Context,
+
+    ) : RecyclerView.ViewHolder(binding.root) {
+
     private val name = binding.textViewNamePokemon
     private val image = binding.imageViewPokemonIcon
     private val id = binding.textViewIdPokemon
@@ -37,20 +49,28 @@ class PokemonViewHolder(binding: ItemPokemonsBinding, private val context: Conte
     private val cardViewBackGround = binding.cardViewPokemons
 
 
-    fun bind(pokemon: Pokemon) {
+    fun bind(
+        pokemon: Pokemon,
+        binding: ItemPokemonsBinding,
+        onItemClickListener: (pokemon: Pokemon) -> Unit
+    ) {
         name.text = pokemon.name
         id.text = "#${pokemon.id}"
         type1.text = pokemon.type1.type
         type2.text = pokemon.type2?.type
 
-        cardViewBackGround.setCardBackgroundColor(Colors.findColor(pokemon.type1.type, context))
-        Colors.setBackgroundColor(pokemon.type1.type, context, type1)
+        cardViewBackGround.setCardBackgroundColor(Colors.findColor(context, pokemon.type1.type))
+        Colors.setDrawableBackgroundColor(context, pokemon.type1.type, type1)
 
         pokemon.type2?.type.let {
             type2.setBackgroundResource(R.drawable.type_background)
-            Colors.setBackgroundColor(it, context, type2)
+            Colors.setDrawableBackgroundColor(context, it, type2)
         }
 
-        Picasso.get().load(pokemon.image.image).into(image)
+        Images.loadImage(pokemon.image.image, image)
+
+        binding.root.setOnClickListener {
+            onItemClickListener.invoke(pokemon)
+        }
     }
 }

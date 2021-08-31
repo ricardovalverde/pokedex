@@ -24,7 +24,7 @@ data class PokemonBodyResponse(
 
 ) {
     fun getPokemon() = Pokemon(
-        name = this.name.uppercase(Locale.getDefault()),
+        name = this.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
         id = id,
         image = spritesResult.otherResponse.front_image.getImageDream(),
         type1 = typesResult[0].type.getType(),

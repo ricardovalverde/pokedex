@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_view_flipper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_bright">
-
 
     <ImageView
         android:id="@+id/pikachu_gif"
@@ -14,12 +14,38 @@
         android:layout_gravity="center"
         tools:src="@drawable/pikachu" />
 
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/error_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:src="@drawable/pngpokemon" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffa500">
+
+        <TextView
+            android:id="@+id/text_view_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180dp"
+            android:fontFamily="@font/gidolinya_regular"
+            android:text="@string/error_500"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imagE_view_error"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/snorlax_sleeping"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_error"
+            app:layout_constraintVertical_bias="0.244" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -8,8 +8,8 @@ import androidx.core.content.ContextCompat
 import com.example.pokedex.R
 
 class Colors() {
-    companion object FColor {
-        fun findColor(type: String, context: Context): Int {
+    companion object Color {
+        fun findColor(context: Context, type: String?): Int {
             return when (type) {
                 "Normal" -> ContextCompat.getColor(context, R.color.type_normal)
                 "Fire" -> ContextCompat.getColor(context, R.color.type_fire)
@@ -34,9 +34,9 @@ class Colors() {
             }
         }
 
-        fun setBackgroundColor(
-            type: String?,
+        fun setDrawableBackgroundColor(
             context: Context,
+            type: String?,
             textView: TextView
         ): Drawable {
             val gradientDrawable = (textView.background as GradientDrawable).mutate()

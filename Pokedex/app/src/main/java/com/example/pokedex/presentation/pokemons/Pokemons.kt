@@ -1,8 +1,6 @@
 package com.example.pokedex.presentation.pokemons
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -30,7 +28,11 @@ class Pokemons : AppCompatActivity() {
                     layoutManager =
                         GridLayoutManager(this@Pokemons, 2, RecyclerView.VERTICAL, false)
                     setHasFixedSize(true)
-                    adapter = PokemonAdapter(pokemons, this@Pokemons)
+                    adapter = PokemonAdapter(pokemons, this@Pokemons) { pokemon ->
+
+                        val intent = PokemonsDetails.init(this@Pokemons, pokemon)
+                        startActivity(intent)
+                    }
                 }
             }
         })
@@ -42,9 +44,10 @@ class Pokemons : AppCompatActivity() {
 
             }
         })
-        Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.getPokemons()
-        }, 5000)
+        viewModel.getPokemons()
+        /* Handler(Looper.getMainLooper()).postDelayed({
+             viewModel.getPokemons()
+         }, 5000)*/
 
     }
 }

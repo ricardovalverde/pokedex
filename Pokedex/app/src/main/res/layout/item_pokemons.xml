@@ -9,6 +9,7 @@
         android:id="@+id/cardView_Pokemons"
         style="@style/cardViewPokemons"
         android:background="@color/white"
+        android:fontFamily="@font/bariol"
         app:cardCornerRadius="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,7 +21,6 @@
             android:layout_gravity="end|bottom"
             android:layout_marginTop="10dp"
             android:scaleType="centerCrop"
-
             tools:src="@drawable/pngpokemon" />
 
         <TextView
@@ -28,8 +28,10 @@
             style="@style/textViewMainCard"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:fontFamily="@font/bariol"
             android:text="Pokemon"
             android:textColor="@color/black"
+            android:textSize="20sp"
             tools:text="Pokemons"
             tools:textColor="@color/black" />
 
@@ -40,8 +42,9 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:text="Pokemon"
+            android:fontFamily="@font/bariol"
             android:textColor="@color/text_gray"
+            android:textSize="15sp"
             tools:text="Pokemons"
             tools:textColor="@color/text_gray" />
 
@@ -53,8 +56,10 @@
             android:layout_marginStart="10dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/type_background"
+            android:fontFamily="@font/bariol"
             android:padding="4dp"
             android:textColor="@color/white"
+            android:textSize="15sp"
             tools:text="Pokemons"
             tools:textColor="@color/black" />
 
@@ -64,8 +69,10 @@
             android:layout_gravity="start|bottom"
             android:layout_marginStart="10dp"
             android:background="@drawable/type_background"
+            android:fontFamily="@font/bariol"
             android:padding="4dp"
             android:textColor="@color/white"
+            android:textSize="15sp"
             tools:text="Pokemons"
             tools:textColor="@color/black" />
     </androidx.cardview.widget.CardView>
