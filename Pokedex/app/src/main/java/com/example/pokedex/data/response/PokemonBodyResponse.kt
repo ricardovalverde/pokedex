@@ -2,6 +2,7 @@ package com.example.pokedex.data.response
 
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.data.response.sprite.OtherResponse
+import com.example.pokedex.data.response.stats.BaseResponse
 import com.example.pokedex.data.response.type.TypeResult
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -20,15 +21,22 @@ data class PokemonBodyResponse(
     val spritesResult: OtherResponse,
 
     @Json(name = "types")
-    val typesResult: List<TypeResult>
+    val typesResult: List<TypeResult>,
+
+    @Json(name = "stats")
+    val statsResult: List<BaseResponse>
 
 ) {
     fun getPokemon() = Pokemon(
         name = this.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
         id = id,
         image = spritesResult.otherResponse.front_image.getImageDream(),
+
         type1 = typesResult[0].type.getType(),
-        type2 = if (typesResult.size > 1) typesResult[1].type.getType() else null
+        type2 = if (typesResult.size > 1) typesResult[1].type.getType() else null,
+
+        stats = statsResult
+
     )
 }
 

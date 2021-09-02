@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
 import com.example.pokedex.databinding.ActivityPokemonsBinding
+import com.example.pokedex.presentation.pokemonsDetails.FragmentPokemonStats
 import com.example.pokedex.util.Images
 
 class Pokemons : AppCompatActivity() {
@@ -30,8 +31,9 @@ class Pokemons : AppCompatActivity() {
                     setHasFixedSize(true)
                     adapter = PokemonAdapter(pokemons, this@Pokemons) { pokemon ->
 
-                        val intent = PokemonsDetails.init(this@Pokemons, pokemon)
-                        startActivity(intent)
+                        val intentDetails = PokemonsDetails.init(this@Pokemons, pokemon)
+                        FragmentPokemonStats.data(pokemon)
+                        startActivity(intentDetails)
                     }
                 }
             }

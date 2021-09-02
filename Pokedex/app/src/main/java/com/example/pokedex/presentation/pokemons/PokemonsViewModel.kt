@@ -1,5 +1,6 @@
 package com.example.pokedex.presentation.pokemons
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pokedex.data.model.ApiService
@@ -16,7 +17,7 @@ class PokemonsViewModel : ViewModel() {
     fun getPokemons() {
         val listPokemons: MutableList<Pokemon> = mutableListOf()
 
-        for (id in 1..168) {
+        for (id in 1..200) {
             ApiService.service.getPokemonList(id).enqueue(object : Callback<PokemonBodyResponse> {
                 override fun onResponse(
                     call: Call<PokemonBodyResponse>,
@@ -37,6 +38,7 @@ class PokemonsViewModel : ViewModel() {
 
                 override fun onFailure(call: Call<PokemonBodyResponse>, t: Throwable) {
                     viewFlipper.value = VIEW_FLIPPER_ERROR_IMAGE
+                    Log.i("Failure", t.message.toString())
                 }
             })
         }

@@ -8,13 +8,25 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.databinding.ActivityPokemonsDetailsBinding
+import com.example.pokedex.presentation.pokemonsDetails.FragmentPokemonStats
 import com.example.pokedex.util.Colors
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Picasso
 
 class PokemonsDetails : AppCompatActivity() {
     private lateinit var binding: ActivityPokemonsDetailsBinding
+    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager: ViewPager2
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPokemonsDetailsBinding.inflate(layoutInflater)
@@ -24,7 +36,15 @@ class PokemonsDetails : AppCompatActivity() {
         setDetailsData()
         finishActivity()
 
-
+        tabLayout = binding.tabsDetails
+        viewPager = binding.viewPagerDetails
+        val adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+        viewPager.adapter = adapter
+        TabLayoutMediator(tabLayout, viewPager) { tab, pos ->
+            when (pos) {
+                0 -> tab.text = "Base Stats"
+            }
+        }.attach()
     }
 
     companion object {
@@ -83,5 +103,16 @@ class PokemonsDetails : AppCompatActivity() {
         binding.arrowBackDetails.setOnClickListener {
             finish()
         }
+    }
+}
+
+class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
+    FragmentStateAdapter(fragmentManager, lifecycle) {
+    override fun getItemCount(): Int = 1
+
+    override fun createFragment(position: Int): Fragment {
+        if (position == 0)
+            FragmentPokemonStats()
+        return FragmentPokemonStats()
     }
 }

@@ -6,5 +6,5 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class DreamWorldResponse(
     @Json(name = "official-artwork")
-    val front_image: FrontImage
+    val front_image: FrontImageResponse
 )

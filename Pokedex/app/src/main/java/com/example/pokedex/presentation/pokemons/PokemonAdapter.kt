@@ -17,7 +17,9 @@ class PokemonAdapter(
     private val onItemClickListener: (pokemon: Pokemon) -> Unit
 
 ) : RecyclerView.Adapter<PokemonViewHolder>() {
+
     private lateinit var binding: ItemPokemonsBinding
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         binding =
             ItemPokemonsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
