@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background_Main">#d2e9af</color>
+    <color name="statusBar_Main">#B9FA6D</color>
+    <color name="text_gray">#E9E8E8</color>
+    <color name="text_gray_dark">#bcb8b8</color>
+    <color name="baby_blue">#b0d6e6</color>
+
+    <!-- Type Color -->
+    <color name="type_fighting">#c13029</color>
+    <color name="type_fire">#f08131</color>
+    <color name="type_normal">#a9a978</color>
+    <color name="type_water">#6990f1</color>
+    <color name="type_flying">#a990f1</color>
+    <color name="type_grass">#79c851</color>
+    <color name="type_poison">#813480</color>
+    <color name="type_electric">#e8ba07</color>
+    <color name="type_ground">#d6aa31</color>
+    <color name="type_psychic">#f85989</color>
+    <color name="type_rock">#b8a139</color>
+    <color name="type_ice">#98d9d9</color>
+    <color name="type_bug">#a9b821</color>
+    <color name="type_dragon">#7039f9</color>
+    <color name="type_ghost">#715998</color>
+    <color name="type_dark">#705949</color>
+    <color name="type_steel">#b8b8d0</color>
+    <color name="type_fairy">#e45577</color>
+
+    <!-- Type Color Dark -->
+    <color name="type_fighting_dark">#FF0C00</color>
+    <color name="type_fire_dark">#D86310</color>
+    <color name="type_normal_dark">#8F8F4C</color>
+    <color name="type_water_dark">#2A61EB</color>
+    <color name="type_flying_dark">#66A990F1</color>
+    <color name="type_grass_dark">#006400</color>
+    <color name="type_poison_dark">#672a66</color>
+    <color name="type_electric_dark">#66F9D031</color>
+    <color name="type_ground_dark">#66E1C168</color>
+    <color name="type_psychic_dark">#f5185b</color>
+    <color name="type_rock_dark">#93812e</color>
+    <color name="type_ice_dark">#62c5c5</color>
+    <color name="type_bug_dark">#87931a</color>
+    <color name="type_dragon_dark">#4907ee</color>
+    <color name="type_ghost_dark">#5a477a</color>
+    <color name="type_dark_dark">#5a473a</color>
+    <color name="type_steel_dark">#8989b1</color>
+    <color name="type_fairy_dark">#66EF99AD</color>
+
+
+</resources>

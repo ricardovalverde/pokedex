@@ -1,0 +1,117 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_Main">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView1"
+            style="@style/cardViewRight"
+            android:backgroundTint="@android:color/holo_green_light"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                style="@style/imageViewMainCardIcon"
+                android:src="@drawable/pngpokemon" />
+
+            <TextView
+                style="@style/textViewMainCard"
+                android:text="Pokemon"
+                tools:text="Pokemons" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            style="@style/cardViewLeft"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                style="@style/imageViewMainCardIcon"
+                android:src="@drawable/pngpokemon" />
+
+            <TextView
+                style="@style/textViewMainCard"
+                android:text="Pokemon"
+                tools:text="Pokemons" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView3"
+            style="@style/cardViewRight"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView1">
+
+            <ImageView
+                style="@style/imageViewMainCardIcon"
+                android:src="@drawable/pngpokemon" />
+
+            <TextView
+                style="@style/textViewMainCard"
+                android:text="Pokemon"
+                tools:text="Pokemons" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView4"
+            style="@style/cardViewLeft"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+            <ImageView
+                style="@style/imageViewMainCardIcon"
+                android:src="@drawable/pngpokemon" />
+
+            <TextView
+                style="@style/textViewMainCard"
+                android:text="Pokemon"
+                tools:text="Pokemons" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView5"
+            style="@style/cardViewRight"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView3">
+
+            <ImageView
+                style="@style/imageViewMainCardIcon"
+                android:src="@drawable/pngpokemon" />
+
+            <TextView
+                style="@style/textViewMainCard"
+                android:text="Pokemon"
+                tools:text="Pokemons" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView6"
+            style="@style/cardViewLeft"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+            <ImageView
+                style="@style/imageViewMainCardIcon"
+                android:src="@drawable/pngpokemon" />
+
+            <TextView
+                style="@style/textViewMainCard"
+                android:text="Pokemon"
+                tools:text="Pokemons" />
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
