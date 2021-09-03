@@ -11,7 +11,7 @@ import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.data.response.stats.BaseResponse
 import com.example.pokedex.databinding.FragmentPokemonStatsBinding
 
-class FragmentPokemonStats : Fragment() {
+class FragmentStatsPokemon : Fragment() {
 
     private lateinit var binding: FragmentPokemonStatsBinding
 

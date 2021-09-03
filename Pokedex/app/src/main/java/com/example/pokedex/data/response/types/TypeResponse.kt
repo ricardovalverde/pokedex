@@ -1,4 +1,4 @@
-package com.example.pokedex.data.response.type
+package com.example.pokedex.data.response.types
 
 import com.example.pokedex.data.model.PokemonType
 import com.squareup.moshi.Json

@@ -8,14 +8,9 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.databinding.ActivityPokemonsDetailsBinding
-import com.example.pokedex.presentation.pokemonsDetails.FragmentPokemonStats
 import com.example.pokedex.util.Colors
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -34,17 +29,9 @@ class PokemonsDetails : AppCompatActivity() {
         setContentView(view)
 
         setDetailsData()
+        setTabLayout()
         finishActivity()
 
-        tabLayout = binding.tabsDetails
-        viewPager = binding.viewPagerDetails
-        val adapter = FragmentAdapter(supportFragmentManager, lifecycle)
-        viewPager.adapter = adapter
-        TabLayoutMediator(tabLayout, viewPager) { tab, pos ->
-            when (pos) {
-                0 -> tab.text = "Base Stats"
-            }
-        }.attach()
     }
 
     companion object {
@@ -99,6 +86,21 @@ class PokemonsDetails : AppCompatActivity() {
         window.statusBarColor = Colors.findColor(this, type1)
     }
 
+    private fun setTabLayout() {
+        tabLayout = binding.tabsDetails
+        viewPager = binding.viewPagerDetails
+
+        val adapter = FragmentAdapter(supportFragmentManager, lifecycle)
+        viewPager.adapter = adapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, pos ->
+            when (pos) {
+                0 -> tab.text = "About"
+                1 -> tab.text = "Base Stats"
+            }
+        }.attach()
+    }
+
     private fun finishActivity() {
         binding.arrowBackDetails.setOnClickListener {
             finish()
@@ -106,13 +108,4 @@ class PokemonsDetails : AppCompatActivity() {
     }
 }
 
-class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
-    FragmentStateAdapter(fragmentManager, lifecycle) {
-    override fun getItemCount(): Int = 1
 
-    override fun createFragment(position: Int): Fragment {
-        if (position == 0)
-            FragmentPokemonStats()
-        return FragmentPokemonStats()
-    }
-}
