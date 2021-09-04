@@ -6,7 +6,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 object ApiService {
     private fun initRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/")
+            .baseUrl(Endpoint.BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }

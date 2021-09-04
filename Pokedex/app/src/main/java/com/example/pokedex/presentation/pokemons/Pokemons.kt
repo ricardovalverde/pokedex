@@ -12,6 +12,7 @@ import com.example.pokedex.R
 import com.example.pokedex.databinding.ActivityPokemonsBinding
 import com.example.pokedex.presentation.pokemonsDetails.FragmentAboutPokemon
 import com.example.pokedex.presentation.pokemonsDetails.FragmentStatsPokemon
+import com.example.pokedex.util.Colors
 import com.example.pokedex.util.Images
 
 class Pokemons : AppCompatActivity() {
@@ -19,6 +20,7 @@ class Pokemons : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityPokemonsBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -26,7 +28,7 @@ class Pokemons : AppCompatActivity() {
         val viewModel: PokemonsViewModel =
             ViewModelProviders.of(this).get(PokemonsViewModel::class.java)
 
-        viewModel.pokemonsLiveData.observe(this, Observer {
+        viewModel.pokemonsLiveData.observe(this, {
             it?.let { pokemons ->
                 with(binding.recyclerViewPokemons) {
                     layoutManager =
@@ -42,17 +44,20 @@ class Pokemons : AppCompatActivity() {
                 }
             }
         })
+
+        Colors.setStatusbarColor(this,this.window,R.color.pokemon_logo,null)
         Images.loadGif(this, R.drawable.pikachu, binding.pikachuGif)
+
         viewModel.viewFlipper.observe(this, Observer {
 
             it?.let { viewFlipper ->
                 binding.mainViewFlipper.displayedChild = viewFlipper
-
             }
         })
+
         viewModel.getPokemons()
-        Handler(Looper.getMainLooper()).postDelayed({
+        /*Handler(Looper.getMainLooper()).postDelayed({
             viewModel.getPokemons()
-        }, 5000)
+        }, 5000)*/
     }
 }

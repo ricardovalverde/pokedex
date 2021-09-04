@@ -1,5 +1,6 @@
 package com.example.pokedex.data.response
 
+import com.example.pokedex.data.model.Endpoint
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.data.response.abilities.AbilityResponse
 import com.example.pokedex.data.response.sprite.OtherResponse
@@ -34,7 +35,10 @@ data class PokemonBodyResponse(
     val statsResult: List<BaseResponse>,
 
     @Json(name = "abilities")
-    val abilitiesResult: List<AbilityResponse>
+    val abilitiesResult: List<AbilityResponse>,
+
+    @Json(name = "species")
+    val urlSpecieResult: UrlSpecieResponse
 
 ) {
     fun getPokemon() = Pokemon(
@@ -44,6 +48,7 @@ data class PokemonBodyResponse(
         height = (this.height / 10),
         abilities = this.abilitiesResult,
         image = spritesResult.otherResponse.front_image.getImageDream(),
+        urlSpecie = urlSpecieResult.url.removePrefix(Endpoint.BASE_URL),
 
         type1 = typesResult[0].type.getType(),
         type2 = if (typesResult.size > 1) typesResult[1].type.getType() else null,

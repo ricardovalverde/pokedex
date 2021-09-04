@@ -3,7 +3,6 @@ package com.example.pokedex.presentation.pokemons
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -79,11 +78,7 @@ class PokemonsDetails : AppCompatActivity() {
         }
 
         Picasso.get().load(imagePokemon).into(imageViewPokemon)
-
-        val window = this.window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.statusBarColor = Colors.findColor(this, type1)
+        Colors.setStatusbarColor(this, this.window, null, Colors.findColor(this, type1))
     }
 
     private fun setTabLayout() {

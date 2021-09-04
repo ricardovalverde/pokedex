@@ -3,7 +3,11 @@ package com.example.pokedex.util
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.view.Window
+import android.view.WindowManager
 import android.widget.TextView
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import com.example.pokedex.R
 
@@ -30,7 +34,25 @@ class Colors() {
                 "Steel" -> ContextCompat.getColor(context, R.color.type_steel)
                 "Fairy" -> ContextCompat.getColor(context, R.color.type_fairy)
 
-                else -> R.color.white
+                else -> ContextCompat.getColor(context, R.color.white)
+            }
+        }
+
+        fun setStatusbarColor(
+            context: Context,
+            window: Window,
+            @ColorRes colorRes: Int?,
+            @ColorInt colorInt: Int?
+        ) {
+
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+
+            if (colorRes != null) {
+                window.statusBarColor = ContextCompat.getColor(context, colorRes)
+            }
+            if (colorInt != null) {
+                window.statusBarColor = colorInt
             }
         }
 
@@ -44,6 +66,7 @@ class Colors() {
 
                 "Normal" ->
                     (gradientDrawable as GradientDrawable).setColor(
+
                         ContextCompat.getColor(
                             context,
                             R.color.type_normal_dark

@@ -5,19 +5,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pokedex.data.model.ApiService
 import com.example.pokedex.data.model.Pokemon
+import com.example.pokedex.data.model.Specie
 import com.example.pokedex.data.response.PokemonBodyResponse
+import com.example.pokedex.data.response.PokemonSpeciesResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class PokemonsViewModel : ViewModel() {
     val pokemonsLiveData: MutableLiveData<List<Pokemon>> = MutableLiveData()
+    val speciesLiveData: MutableLiveData<List<Specie>> = MutableLiveData()
     val viewFlipper: MutableLiveData<Int> = MutableLiveData()
 
     fun getPokemons() {
         val listPokemons: MutableList<Pokemon> = mutableListOf()
 
-        for (id in 500..700) {
+        for (id in 789..790) {
             ApiService.service.getPokemonList(id).enqueue(object : Callback<PokemonBodyResponse> {
                 override fun onResponse(
                     call: Call<PokemonBodyResponse>,
@@ -28,6 +31,8 @@ class PokemonsViewModel : ViewModel() {
                         response.isSuccessful -> {
                             response.body()?.let { pokemonBodyResponse ->
                                 val pokemon = pokemonBodyResponse.getPokemon()
+                                val urlSpecie = pokemon.urlSpecie
+                                speciesLiveData.value = getSpecie(urlSpecie)
                                 listPokemons.add(pokemon)
                             }
                             viewFlipper.value = VIEW_FLIPPER_LINEAR_LAYOUT
@@ -42,6 +47,39 @@ class PokemonsViewModel : ViewModel() {
                 }
             })
         }
+    }
+
+    fun getSpecie(url: String): MutableList<Specie> {
+        val listSpecies: MutableList<Specie> = mutableListOf()
+
+        url.let {
+            ApiService.service.getSpeciesList(it)
+                .enqueue(object : Callback<PokemonSpeciesResponse> {
+                    override fun onResponse(
+                        call: Call<PokemonSpeciesResponse>,
+                        response: Response<PokemonSpeciesResponse>
+                    ) {
+                        when {
+                            response.isSuccessful -> {
+                                response.body()?.let { pokemonSpeciesResponse ->
+                                    val species =
+                                        pokemonSpeciesResponse.getSpecie()
+                                    listSpecies.add(species)
+                                }
+                            }
+                        }
+                    }
+
+                    override fun onFailure(
+                        call: Call<PokemonSpeciesResponse>,
+                        t: Throwable
+                    ) {
+                        Log.i("FailureSpecie", t.message.toString())
+                    }
+
+                })
+        }
+        return listSpecies
     }
 
     companion object {

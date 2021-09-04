@@ -12,5 +12,6 @@ data class Pokemon(
     val type1: PokemonType,
     val type2: PokemonType?,
     val stats: List<BaseResponse>,
-    val abilities: List<AbilityResponse>
+    val abilities: List<AbilityResponse>,
+    val urlSpecie: String
 )
