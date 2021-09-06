@@ -1,10 +1,11 @@
-package com.example.pokedex.data.response.abilities
+package com.example.pokedex.data.response.category
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class NameAbilityResponse(
+data class LanguageName(
+
     @Json(name = "name")
-    val ability: String
+    val language: String
 )

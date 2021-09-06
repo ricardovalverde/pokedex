@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pokedex.data.model.ApiService
+import com.example.pokedex.data.model.Category
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.data.model.Specie
 import com.example.pokedex.data.response.PokemonBodyResponse
@@ -17,12 +18,13 @@ class PokemonsViewModel : ViewModel() {
     val pokemonsLiveData: MutableLiveData<List<Pokemon>> = MutableLiveData()
     val viewFlipper: MutableLiveData<Int> = MutableLiveData()
     val listSpecie: MutableList<Specie> = mutableListOf()
+    val listCategory: MutableList<Category> = mutableListOf()
 
 
     fun getPokemons() {
         val listPokemons: MutableList<Pokemon> = mutableListOf()
 
-        for (id in 867..868) {
+        for (id in 800..890) {
             ApiService.service.getPokemonList(id).enqueue(object : Callback<PokemonBodyResponse> {
                 override fun onResponse(
                     call: Call<PokemonBodyResponse>,
@@ -62,6 +64,7 @@ class PokemonsViewModel : ViewModel() {
                             response.isSuccessful -> {
                                 response.body()?.let { pokemonsSpecie ->
                                     listSpecie.add(pokemonsSpecie.getSpecie())
+                                    listCategory.add(pokemonsSpecie.getCategory())
                                 }
                             }
                         }

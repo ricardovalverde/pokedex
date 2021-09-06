@@ -18,7 +18,6 @@ class Pokemons : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityPokemonsBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -28,6 +27,7 @@ class Pokemons : AppCompatActivity() {
 
         viewModel.pokemonsLiveData.observe(this, {
             it?.let { pokemons ->
+
                 with(binding.recyclerViewPokemons) {
                     layoutManager =
                         GridLayoutManager(this@Pokemons, 2, RecyclerView.VERTICAL, false)
@@ -35,9 +35,11 @@ class Pokemons : AppCompatActivity() {
                     adapter = PokemonAdapter(pokemons, this@Pokemons) { pokemon ->
 
                         val intentDetails = PokemonsDetails.init(this@Pokemons, pokemon)
+
                         viewModel.getSpecie(pokemon.urlSpecie)
                         FragmentStatsPokemon.data(pokemon)
-                        FragmentAboutPokemon.data(pokemon, viewModel.listSpecie)
+                        FragmentAboutPokemon.data(pokemon, viewModel.listSpecie,viewModel.listCategory)
+
                         startActivity(intentDetails)
                     }
                 }
@@ -60,3 +62,4 @@ class Pokemons : AppCompatActivity() {
         }, 5000)*/
     }
 }
+//    #66A990F1

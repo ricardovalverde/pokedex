@@ -10,8 +10,8 @@
         <entry key="app/src/main/res/layout/activity_details_pokemon.xml" value="0.20677083333333332" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_pokemons.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_pokemons_details.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_pokemon_about.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_pokemons_details.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_pokemon_about.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_pokemon_stats.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_pokedex.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_pokemons.xml" value="0.2765151515151515" />
