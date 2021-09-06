@@ -13,26 +13,26 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PokemonsViewModel : ViewModel() {
+
     val pokemonsLiveData: MutableLiveData<List<Pokemon>> = MutableLiveData()
-    val speciesLiveData: MutableLiveData<List<Specie>> = MutableLiveData()
     val viewFlipper: MutableLiveData<Int> = MutableLiveData()
+    val listSpecie: MutableList<Specie> = mutableListOf()
+
 
     fun getPokemons() {
         val listPokemons: MutableList<Pokemon> = mutableListOf()
 
-        for (id in 789..790) {
+        for (id in 867..868) {
             ApiService.service.getPokemonList(id).enqueue(object : Callback<PokemonBodyResponse> {
                 override fun onResponse(
                     call: Call<PokemonBodyResponse>,
                     response: Response<PokemonBodyResponse>
-
                 ) {
                     when {
                         response.isSuccessful -> {
                             response.body()?.let { pokemonBodyResponse ->
                                 val pokemon = pokemonBodyResponse.getPokemon()
-                                val urlSpecie = pokemon.urlSpecie
-                                speciesLiveData.value = getSpecie(urlSpecie)
+                                getSpecie(pokemon.urlSpecie)
                                 listPokemons.add(pokemon)
                             }
                             viewFlipper.value = VIEW_FLIPPER_LINEAR_LAYOUT
@@ -49,8 +49,7 @@ class PokemonsViewModel : ViewModel() {
         }
     }
 
-    fun getSpecie(url: String): MutableList<Specie> {
-        val listSpecies: MutableList<Specie> = mutableListOf()
+    fun getSpecie(url: String) {
 
         url.let {
             ApiService.service.getSpeciesList(it)
@@ -61,10 +60,8 @@ class PokemonsViewModel : ViewModel() {
                     ) {
                         when {
                             response.isSuccessful -> {
-                                response.body()?.let { pokemonSpeciesResponse ->
-                                    val species =
-                                        pokemonSpeciesResponse.getSpecie()
-                                    listSpecies.add(species)
+                                response.body()?.let { pokemonsSpecie ->
+                                    listSpecie.add(pokemonsSpecie.getSpecie())
                                 }
                             }
                         }
@@ -76,10 +73,8 @@ class PokemonsViewModel : ViewModel() {
                     ) {
                         Log.i("FailureSpecie", t.message.toString())
                     }
-
                 })
         }
-        return listSpecies
     }
 
     companion object {

@@ -1,4 +1,4 @@
-package com.example.pokedex.data.response
+package com.example.pokedex.data.response.flavors
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -10,8 +10,5 @@ data class Flavors(
     val flavorText: String,
 
     @Json(name = "language")
-    val languagesResponse: LanguageResult,
-
-    @Json(name = "version")
-    val versionsResponse: VersionResult
+    val languagesResponse: LanguageResult
 )

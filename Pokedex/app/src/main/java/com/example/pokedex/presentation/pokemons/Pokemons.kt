@@ -1,8 +1,6 @@
 package com.example.pokedex.presentation.pokemons
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -37,15 +35,16 @@ class Pokemons : AppCompatActivity() {
                     adapter = PokemonAdapter(pokemons, this@Pokemons) { pokemon ->
 
                         val intentDetails = PokemonsDetails.init(this@Pokemons, pokemon)
+                        viewModel.getSpecie(pokemon.urlSpecie)
                         FragmentStatsPokemon.data(pokemon)
-                        FragmentAboutPokemon.data(pokemon)
+                        FragmentAboutPokemon.data(pokemon, viewModel.listSpecie)
                         startActivity(intentDetails)
                     }
                 }
             }
         })
 
-        Colors.setStatusbarColor(this,this.window,R.color.pokemon_logo,null)
+        Colors.setStatusbarColor(this, this.window, R.color.pokemon_logo, null)
         Images.loadGif(this, R.drawable.pikachu, binding.pikachuGif)
 
         viewModel.viewFlipper.observe(this, Observer {

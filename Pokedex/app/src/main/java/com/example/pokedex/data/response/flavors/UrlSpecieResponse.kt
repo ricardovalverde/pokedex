@@ -1,6 +1,5 @@
-package com.example.pokedex.data.response
+package com.example.pokedex.data.response.flavors
 
-import com.example.pokedex.data.model.Specie
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

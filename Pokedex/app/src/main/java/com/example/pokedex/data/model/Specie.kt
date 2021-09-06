@@ -1,7 +1,7 @@
 package com.example.pokedex.data.model
 
-import com.example.pokedex.data.response.Flavors
+import com.example.pokedex.data.response.flavors.Flavors
 
 data class Specie(
-    val specie: List<Flavors>
+    val FlavorsList: List<Flavors>
 )

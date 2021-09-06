@@ -3,6 +3,7 @@ package com.example.pokedex.data.response
 import com.example.pokedex.data.model.Endpoint
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.data.response.abilities.AbilityResponse
+import com.example.pokedex.data.response.flavors.UrlSpecieResponse
 import com.example.pokedex.data.response.sprite.OtherResponse
 import com.example.pokedex.data.response.stats.BaseResponse
 import com.example.pokedex.data.response.types.TypeResult
@@ -38,10 +39,11 @@ data class PokemonBodyResponse(
     val abilitiesResult: List<AbilityResponse>,
 
     @Json(name = "species")
-    val urlSpecieResult: UrlSpecieResponse
+    val urlSpecieResult: UrlSpecieResponse,
 
-) {
+    ) {
     fun getPokemon() = Pokemon(
+
         name = this.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
         id = id,
         weight = (this.weight / 10),
@@ -53,8 +55,7 @@ data class PokemonBodyResponse(
         type1 = typesResult[0].type.getType(),
         type2 = if (typesResult.size > 1) typesResult[1].type.getType() else null,
 
-        stats = statsResult
-
+        stats = statsResult,
     )
 }
 

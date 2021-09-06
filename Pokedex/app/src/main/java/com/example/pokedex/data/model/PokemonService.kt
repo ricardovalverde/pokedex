@@ -12,6 +12,6 @@ interface PokemonService {
     fun getPokemonList(@Path("id") id: Int): Call<PokemonBodyResponse>
 
     @GET("{url}")
-    fun getSpeciesList(@Path("url")url: String): Call<PokemonSpeciesResponse>
+    fun getSpeciesList(@Path("url") url: String): Call<PokemonSpeciesResponse>
 
 }

@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import com.example.pokedex.R
 import com.example.pokedex.data.model.Pokemon
+import com.example.pokedex.data.model.Specie
 import com.example.pokedex.databinding.FragmentPokemonAboutBinding
-import com.example.pokedex.presentation.pokemons.PokemonsViewModel
 
 class FragmentAboutPokemon : Fragment() {
     private lateinit var binding: FragmentPokemonAboutBinding
@@ -26,9 +25,7 @@ class FragmentAboutPokemon : Fragment() {
         val weight = binding.textViewValueWeight
         val ability1 = binding.textViewAbility1
         val ability2 = binding.textViewAbility2
-
-
-
+        val description = binding.textViewDescriptionPokemon
 
 
         height.text = getString(R.string.height, HEIGHT.toString())
@@ -37,26 +34,19 @@ class FragmentAboutPokemon : Fragment() {
         ability1.text = ABILITY_1
         ability2.text = ABILITY_2
 
-        val viewModel: PokemonsViewModel =
-            ViewModelProviders.of(this).get(PokemonsViewModel::class.java)
+        SPECIES.let {
 
-        viewModel.speciesLiveData.observe(viewLifecycleOwner, {
-            it?.let {
-                for (pos in it){
-                    for (r in pos.specie){
-                        for(s in r.languagesResponse.language){
-                            if (s.toString() == "en"){
-                                binding.textViewDescriptionPokemon.text = s.toString()
-                                break
-                            }
-                        }
+            for (position in it) {
+                for (item in position.FlavorsList) {
+                    if (item.languagesResponse.language == "en") {
+                        description.text = item.flavorText
                     }
                 }
             }
-        })
+        }
+
         return binding.root
     }
-
 
     companion object {
 
@@ -64,11 +54,16 @@ class FragmentAboutPokemon : Fragment() {
         private var HEIGHT: Float = 0.0F
         private lateinit var ABILITY_1: String
         private var ABILITY_2: String? = null
+        private lateinit var SPECIES: MutableList<Specie>
 
-        fun data(pokemon: Pokemon) {
+        fun data(
+            pokemon: Pokemon,
+            listSpecie: MutableList<Specie>
+
+        ) {
             WEIGHT = pokemon.weight
             HEIGHT = pokemon.height
-
+            SPECIES = listSpecie
             ABILITY_1 = pokemon.abilities[0].nameAbility.Ability.capitalize()
 
             if (pokemon.abilities.size > 1) {
@@ -77,4 +72,3 @@ class FragmentAboutPokemon : Fragment() {
         }
     }
 }
-
