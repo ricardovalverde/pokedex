@@ -2,17 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/black"
-    android:id="@+id/container_fragment_search"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<fragment
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/arrow_back_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        tools:ignore="ContentDescription" />
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView_Pokemons"
+        android:id="@+id/card_view_search_pokemons"
         style="@style/cardViewPokemons"
-        android:background="@color/white"
         android:fontFamily="@font/bariol"
         app:cardCornerRadius="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +36,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/bariol"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             tools:text="Pokemons"
             tools:textColor="@color/black" />
@@ -48,7 +50,7 @@
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/bariol"
             android:textColor="@color/text_gray"
-            android:textSize="15sp"
+            android:textSize="20sp"
             tools:text="Pokemons"
             tools:textColor="@color/text_gray" />
 
@@ -58,12 +60,12 @@
             style="@style/textViewMainCard"
             android:layout_gravity="start|bottom"
             android:layout_marginStart="10dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="45dp"
             android:background="@drawable/type_background"
             android:fontFamily="@font/bariol"
             android:padding="4dp"
             android:textColor="@color/white"
-            android:textSize="15sp"
+            android:textSize="20sp"
             tools:text="Pokemons"
             tools:textColor="@color/black" />
 
@@ -76,10 +78,8 @@
             android:fontFamily="@font/bariol"
             android:padding="4dp"
             android:textColor="@color/white"
-            android:textSize="15sp"
+            android:textSize="20sp"
             tools:text="Pokemons"
             tools:textColor="@color/black" />
     </androidx.cardview.widget.CardView>
-</fragment>
-
 </LinearLayout>

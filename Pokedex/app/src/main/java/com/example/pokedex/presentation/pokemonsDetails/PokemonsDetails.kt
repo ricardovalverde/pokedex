@@ -31,10 +31,7 @@ class PokemonsDetails : AppCompatActivity() {
         setTabLayout()
         finishActivity()
 
-
     }
-
-
 
     companion object {
         private const val EXTRA_NAME = "EXTRA_NAME"

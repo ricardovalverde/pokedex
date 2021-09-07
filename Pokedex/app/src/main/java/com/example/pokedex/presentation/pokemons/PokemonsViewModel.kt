@@ -24,7 +24,7 @@ class PokemonsViewModel : ViewModel() {
     fun getPokemons() {
         val listPokemons: MutableList<Pokemon> = mutableListOf()
 
-        for (id in 650..700) {
+        for (id in 400..500) {
             ApiService.service.getPokemonList(id).enqueue(object : Callback<PokemonBodyResponse> {
                 override fun onResponse(
                     call: Call<PokemonBodyResponse>,
