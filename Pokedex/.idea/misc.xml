@@ -8,16 +8,20 @@
         <entry key="app/src/main/res/drawable/type_background.xml" value="0.22291666666666668" />
         <entry key="app/src/main/res/layout/activity_category_pokemons.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_details_pokemon.xml" value="0.20677083333333332" />
+        <entry key="app/src/main/res/layout/activity_fragment_search_pokemon.xml" value="0.17882882882882883" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_pokemons.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_pokemons_details.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_pokemon_about.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_pokemon_stats.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_search_about.xml" value="0.17882882882882883" />
+        <entry key="app/src/main/res/layout/fragment_search_pokemon.xml" value="0.17882882882882883" />
         <entry key="app/src/main/res/layout/item_pokedex.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_pokemons.xml" value="0.2765151515151515" />
         <entry key="app/src/main/res/layout/item_stats.xml" value="0.33" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.17882882882882883" />
         <entry key="app/src/main/res/layout/teste.xml" value="0.20677083333333332" />
+        <entry key="app/src/main/res/menu/menu_search.xml" value="0.17882882882882883" />
       </map>
     </option>
   </component>

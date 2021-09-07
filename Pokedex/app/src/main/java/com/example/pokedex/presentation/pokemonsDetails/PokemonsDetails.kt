@@ -1,4 +1,4 @@
-package com.example.pokedex.presentation.pokemons
+package com.example.pokedex.presentation.pokemonsDetails
 
 import android.content.Context
 import android.content.Intent
@@ -31,7 +31,10 @@ class PokemonsDetails : AppCompatActivity() {
         setTabLayout()
         finishActivity()
 
+
     }
+
+
 
     companion object {
         private const val EXTRA_NAME = "EXTRA_NAME"
