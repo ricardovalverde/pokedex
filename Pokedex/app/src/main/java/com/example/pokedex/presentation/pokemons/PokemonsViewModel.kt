@@ -15,16 +15,16 @@ import retrofit2.Response
 
 class PokemonsViewModel : ViewModel() {
 
-    val pokemonsLiveData: MutableLiveData<List<Pokemon>> = MutableLiveData()
+    val pokemonsLiveData: MutableLiveData<MutableList<Pokemon>> = MutableLiveData()
     val viewFlipper: MutableLiveData<Int> = MutableLiveData()
     val listSpecie: MutableList<Specie> = mutableListOf()
     val listCategory: MutableList<Category> = mutableListOf()
 
 
     fun getPokemons() {
-        val listPokemons: MutableList<Pokemon> = mutableListOf()
+        val listPokemons: MutableList<Pokemon> = arrayListOf()
 
-        for (id in 400..500) {
+        for (id in 1..100) {
             ApiService.service.getPokemonList(id).enqueue(object : Callback<PokemonBodyResponse> {
                 override fun onResponse(
                     call: Call<PokemonBodyResponse>,
@@ -37,8 +37,9 @@ class PokemonsViewModel : ViewModel() {
                                 getSpecie(pokemon.urlSpecie)
                                 listPokemons.add(pokemon)
                             }
+                            listPokemons.sortBy { it.id }
                             viewFlipper.value = VIEW_FLIPPER_LINEAR_LAYOUT
-                            pokemonsLiveData.value = listPokemons.sortedBy { it.id }
+                            pokemonsLiveData.value = listPokemons
                         }
                     }
                 }

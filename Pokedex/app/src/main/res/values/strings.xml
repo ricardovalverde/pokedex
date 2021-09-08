@@ -10,6 +10,6 @@
     <string name="weight_label">WEIGHT</string>
     <string name="abilities_label">ABILITIES</string>
     <string name="about">The bulb on its back grows by drawing energy.Fit gives off an aroma when it is ready to bloom</string>
-    <string name="search_hint">Search Pokémon</string>
+    <string name="search_hint">Search for Pokémon name,id or type</string>
 
 </resources>

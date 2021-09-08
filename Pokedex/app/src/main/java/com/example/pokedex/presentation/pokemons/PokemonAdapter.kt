@@ -3,6 +3,8 @@ package com.example.pokedex.presentation.pokemons
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
 import com.example.pokedex.data.model.Pokemon
@@ -12,13 +14,16 @@ import com.example.pokedex.util.Images
 
 
 class PokemonAdapter(
-    private val list_pokemons: List<Pokemon>,
+    private var list_pokemons: MutableList<Pokemon>,
     private val context: Context,
     private val onItemClickListener: (pokemon: Pokemon) -> Unit
 
-) : RecyclerView.Adapter<PokemonViewHolder>() {
-
+) : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>(), Filterable {
     private lateinit var binding: ItemPokemonsBinding
+
+
+    private val listPokemonsComplete: MutableList<Pokemon> = ArrayList<Pokemon>(list_pokemons)
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         binding =
@@ -30,49 +35,89 @@ class PokemonAdapter(
         holder.bind(list_pokemons[position], binding, onItemClickListener)
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return position
+    override fun getItemCount() = list_pokemons.count()
+    override fun getFilter(): Filter {
+        return filterObj
     }
 
-    override fun getItemCount() = list_pokemons.count()
-}
+    var filterObj = object : Filter() {
 
-class PokemonViewHolder(
-    binding: ItemPokemonsBinding,
-    private val context: Context,
+        override fun performFiltering(charSequence: CharSequence?): FilterResults {
+            val filteredList: MutableList<Pokemon> = arrayListOf()
 
-    ) : RecyclerView.ViewHolder(binding.root) {
+            if (charSequence.toString().isEmpty()) {
+                filteredList.addAll(listPokemonsComplete)
+            } else {
+                for (pokemon in listPokemonsComplete) {
 
-    private val name = binding.textViewNamePokemon
-    private val image = binding.imageViewPokemonIcon
-    private val id = binding.textViewIdPokemon
-    private val type1 = binding.textViewType1Pokemon
-    private val type2 = binding.textViewType2Pokemon
-    private val cardViewBackGround = binding.cardViewPokemons
+                    if (pokemon.name.lowercase().contains(charSequence!!) ||
+                        pokemon.id.toString().contains(charSequence) ||
+                        pokemon.type1.type.lowercase().contains(charSequence)
+                    ) {
+                        filteredList.add(pokemon)
+                    }
+                }
+            }
+            val filterResults: FilterResults = FilterResults()
+            filterResults.values = filteredList.sortedBy {  pokemon -> pokemon.id }
 
-
-    fun bind(
-        pokemon: Pokemon,
-        binding: ItemPokemonsBinding,
-        onItemClickListener: (pokemon: Pokemon) -> Unit
-    ) {
-        name.text = pokemon.name
-        id.text = "#${pokemon.id}"
-        type1.text = pokemon.type1.type
-        type2.text = pokemon.type2?.type
-
-        cardViewBackGround.setCardBackgroundColor(Colors.findColor(context, pokemon.type1.type))
-        Colors.setDrawableBackgroundColor(context, pokemon.type1.type, type1)
-
-        pokemon.type2?.type.let {
-            type2.setBackgroundResource(R.drawable.type_background)
-            Colors.setDrawableBackgroundColor(context, it, type2)
+            return filterResults
         }
 
-        Images.loadImage(pokemon.image.image, image)
+        override fun publishResults(p0: CharSequence?, filterResults: FilterResults?) {
+            list_pokemons.clear()
+            list_pokemons.addAll(filterResults?.values as Collection<Pokemon>)
+            notifyDataSetChanged()
 
-        binding.root.setOnClickListener {
-            onItemClickListener.invoke(pokemon)
+        }
+        /*fun filterList(filterList: List<Pokemon> = arrayListOf()) {
+            list_pokemons = filterList
+            notifyDataSetChanged()
+        }
+
+        fun removeFilter() {
+            list_pokemons = listPokemonsComplete
+            notifyDataSetChanged()
+        }*/
+    }
+
+    class PokemonViewHolder(
+        binding: ItemPokemonsBinding,
+        private val context: Context,
+
+        ) : RecyclerView.ViewHolder(binding.root) {
+
+        private val name = binding.textViewNamePokemon
+        private val image = binding.imageViewPokemonIcon
+        private val id = binding.textViewIdPokemon
+        private val type1 = binding.textViewType1Pokemon
+        private val type2 = binding.textViewType2Pokemon
+        private val cardViewBackGround = binding.cardViewPokemons
+
+
+        fun bind(
+            pokemon: Pokemon,
+            binding: ItemPokemonsBinding,
+            onItemClickListener: (pokemon: Pokemon) -> Unit
+        ) {
+            name.text = pokemon.name
+            id.text = "#${pokemon.id}"
+            type1.text = pokemon.type1.type
+            type2.text = pokemon.type2?.type
+
+            cardViewBackGround.setCardBackgroundColor(Colors.findColor(context, pokemon.type1.type))
+            Colors.setDrawableBackgroundColor(context, pokemon.type1.type, type1)
+
+            pokemon.type2?.type.let {
+                type2.setBackgroundResource(R.drawable.type_background)
+                Colors.setDrawableBackgroundColor(context, it, type2)
+            }
+
+            Images.loadImage(pokemon.image.image, image)
+
+            binding.root.setOnClickListener {
+                onItemClickListener.invoke(pokemon)
+            }
         }
     }
 }

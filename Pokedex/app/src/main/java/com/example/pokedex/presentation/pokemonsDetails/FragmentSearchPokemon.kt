@@ -30,9 +30,9 @@ class FragmentSearchPokemon : Fragment() {
         val image = binding.imageViewPokemonIconSearch
         val cardView = binding.cardViewSearchPokemons
         val arrowback = binding.arrowBackSearch
-        arrowback.setOnClickListener {
+        /*arrowback.setOnClickListener {
             Pokemons.removeFragment(FragmentManager,this)
-        }
+        }*/
 
         name.text = NAME
         id.text = "#${ID.toString()}"
