@@ -20,9 +20,7 @@ class PokemonAdapter(
 
 ) : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>(), Filterable {
     private lateinit var binding: ItemPokemonsBinding
-
-
-    private val listPokemonsComplete: MutableList<Pokemon> = ArrayList<Pokemon>(list_pokemons)
+    private val listPokemonsComplete: ArrayList<Pokemon> = ArrayList(list_pokemons)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
@@ -32,10 +30,13 @@ class PokemonAdapter(
     }
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-        holder.bind(list_pokemons[position], binding, onItemClickListener)
+        val pos = holder.adapterPosition
+        holder.setIsRecyclable(false)
+        holder.bind(list_pokemons[pos], binding, onItemClickListener)
     }
 
     override fun getItemCount() = list_pokemons.count()
+
     override fun getFilter(): Filter {
         return filterObj
     }
@@ -46,20 +47,23 @@ class PokemonAdapter(
             val filteredList: MutableList<Pokemon> = arrayListOf()
 
             if (charSequence.toString().isEmpty()) {
-                filteredList.addAll(listPokemonsComplete)
+                filteredList.addAll(listPokemonsComplete.sortedBy { pokemon -> pokemon.id })
             } else {
                 for (pokemon in listPokemonsComplete) {
 
                     if (pokemon.name.lowercase().contains(charSequence!!) ||
                         pokemon.id.toString().contains(charSequence) ||
-                        pokemon.type1.type.lowercase().contains(charSequence)
+                        pokemon.type1.type.lowercase().contains(charSequence) ||
+                        pokemon.type2?.type.let {
+                            it?.lowercase()?.contains(charSequence) == true
+                        }
                     ) {
                         filteredList.add(pokemon)
                     }
                 }
             }
             val filterResults: FilterResults = FilterResults()
-            filterResults.values = filteredList.sortedBy {  pokemon -> pokemon.id }
+            filterResults.values = filteredList
 
             return filterResults
         }
@@ -68,17 +72,7 @@ class PokemonAdapter(
             list_pokemons.clear()
             list_pokemons.addAll(filterResults?.values as Collection<Pokemon>)
             notifyDataSetChanged()
-
         }
-        /*fun filterList(filterList: List<Pokemon> = arrayListOf()) {
-            list_pokemons = filterList
-            notifyDataSetChanged()
-        }
-
-        fun removeFilter() {
-            list_pokemons = listPokemonsComplete
-            notifyDataSetChanged()
-        }*/
     }
 
     class PokemonViewHolder(
@@ -93,7 +87,6 @@ class PokemonAdapter(
         private val type1 = binding.textViewType1Pokemon
         private val type2 = binding.textViewType2Pokemon
         private val cardViewBackGround = binding.cardViewPokemons
-
 
         fun bind(
             pokemon: Pokemon,

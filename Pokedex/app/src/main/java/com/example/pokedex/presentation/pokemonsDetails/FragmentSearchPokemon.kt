@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.databinding.FragmentSearchPokemonBinding
-import com.example.pokedex.presentation.pokemons.Pokemons
 import com.example.pokedex.util.Colors
 import com.squareup.picasso.Picasso
 
@@ -39,11 +38,11 @@ class FragmentSearchPokemon : Fragment() {
         type1.text = TYPE1
         TYPE2.let {
             type2.text = it
-            Colors.setDrawableBackgroundColor(CONTEXT, TYPE2,type2)
+            Colors.setDrawableBackgroundColor(CONTEXT, TYPE2, type2)
 
         }
         Picasso.get().load(IMAGE).into(image)
-        Colors.setDrawableBackgroundColor(CONTEXT, TYPE1,type1)
+        Colors.setDrawableBackgroundColor(CONTEXT, TYPE1, type1)
         cardView.setCardBackgroundColor(Colors.findColor(CONTEXT, TYPE1))
 
 
