@@ -78,6 +78,7 @@ class PokemonAdapter(
         override fun publishResults(p0: CharSequence?, filterResults: FilterResults?) {
             list_pokemons.clear()
             list_pokemons.addAll(filterResults?.values as Collection<Pokemon>)
+            list_pokemons.sortBy { pokemon -> pokemon.id }
             notifyDataSetChanged()
 
         }

@@ -3,14 +3,12 @@ package com.example.pokedex.presentation.pokemons
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.pokedex.R
 import com.example.pokedex.data.model.ApiService
 import com.example.pokedex.data.model.Category
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.data.model.Specie
 import com.example.pokedex.data.response.PokemonBodyResponse
 import com.example.pokedex.data.response.PokemonSpeciesResponse
-import com.example.pokedex.util.Colors
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
