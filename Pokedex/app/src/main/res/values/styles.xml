@@ -26,17 +26,18 @@
     </style>
 
     <style name="imageViewMainCardIcon">
-        <item name="android:layout_width">100dp</item>
-        <item name="android:layout_height">100dp</item>
-        <item name="android:layout_gravity">center|top</item>
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginTop">20dp</item>
     </style>
 
     <style name="textViewMainCard">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">start|top</item>
+        <item name="android:layout_gravity">center|top</item>
         <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:paddingTop">10dp</item>
     </style>
 
 </resources>

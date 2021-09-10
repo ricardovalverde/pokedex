@@ -3,6 +3,8 @@ package com.example.pokedex.presentation.pokemons
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -23,10 +25,12 @@ import com.example.pokedex.util.Images
 
 
 private lateinit var binding: ActivityPokemonsBinding
+private lateinit var viewModel: PokemonsViewModel
 
 class Pokemons : AppCompatActivity() {
     private lateinit var adapterPokemon: PokemonAdapter
     private lateinit var searchFragment: FragmentSearchPokemon
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -36,13 +40,15 @@ class Pokemons : AppCompatActivity() {
         setContentView(view)
         val toolbar = binding.mainToolbar
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        setViewModel()
 
-        Colors.setStatusbarColor(this, this.window, R.color.pokemon_logo, null)
+        viewModel = ViewModelProviders.of(this).get(PokemonsViewModel::class.java)
+
+        setViewModel(viewModel)
+
         Images.loadGif(this, R.drawable.pikachu, binding.pikachuGif)
-        Colors.setStatusbarColor(this, this.window, R.color.background_Main, null)
+        //Colors.setStatusbarColor(this, this.window, R.color.background_Main, null)
         window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
 
@@ -66,44 +72,40 @@ class Pokemons : AppCompatActivity() {
                 setSearchableInfo(searchManager.getSearchableInfo(componentName))
 
                 searchView.setOnCloseListener(SearchView.OnCloseListener {
-                    setViewModel()
+                    adapterPokemon.filterObj.filter("")
                     false
                 })
-
                 searchView.maxWidth = Integer.MAX_VALUE
             }
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
                 override fun onQueryTextSubmit(newText: String?): Boolean {
                     if (newText?.isNotEmpty() == true) {
-                        adapterPokemon.filterObj.filter(newText?.lowercase())
+                        adapterPokemon.filterObj.filter(newText.lowercase())
                         searchView.clearFocus()
                     }
                     return true
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
+
                     if (newText?.isNotEmpty() == true) {
-                        adapterPokemon.filterObj.filter(newText?.lowercase())
+                        adapterPokemon.filterObj.filter(newText.lowercase())
                     }
                     return true
                 }
             })
-
             searchItem.expandActionView()
+            binding.recyclerViewPokemons.smoothScrollBy(0, 0)
         }
         return true
     }
 
-    private fun setViewModel() {
-
-        val viewModel: PokemonsViewModel =
-            ViewModelProviders.of(this).get(PokemonsViewModel::class.java)
+    private fun setViewModel(viewModel: PokemonsViewModel) {
 
         viewModel.pokemonsLiveData.observe(this, {
 
             it?.let { pokemons ->
-                //listPokemons = pokemons
                 pokemons.sortBy { pokemon -> pokemon.id }
                 adapterPokemon = PokemonAdapter(pokemons, this@Pokemons) { pokemon ->
 
@@ -128,15 +130,14 @@ class Pokemons : AppCompatActivity() {
                 }
             }
         })
+        Colors.setStatusbarColor(this, this.window, R.color.pokemon_logo, null)
         viewModel.viewFlipper.observe(this, Observer {
-
-            it?.let { viewFlipper ->
-                binding.mainViewFlipper.displayedChild = viewFlipper
-            }
+            Handler(Looper.getMainLooper()).postDelayed({
+                it?.let { viewFlipper ->
+                    binding.mainViewFlipper.displayedChild = viewFlipper
+                }
+            }, 2000)
         })
         viewModel.getPokemons()
-        /*Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.getPokemons()
-        }, 5000)*/
     }
 }

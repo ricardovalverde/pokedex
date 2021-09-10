@@ -35,11 +35,12 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/bariol"
                 android:textColor="@color/text_gray"
-                android:textSize="20sp"
+                android:textSize="23sp"
                 app:layout_constraintBottom_toBottomOf="@+id/name_pokemon_details"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.92"
+                app:layout_constraintStart_toEndOf="@+id/name_pokemon_details"
                 app:layout_constraintTop_toTopOf="@+id/name_pokemon_details"
-                app:layout_constraintVertical_bias="1.0"
                 tools:text="#1"
                 tools:textColor="@color/black">
 
@@ -94,8 +95,8 @@
 
             <ImageView
                 android:id="@+id/image_pokemon_details"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
                 android:layout_marginEnd="-150dp"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -109,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="bottom"
-            android:layout_weight="1.4"
+            android:layout_weight="1.5"
             android:background="@drawable/details_background"
             android:fitsSystemWindows="true">
 
@@ -131,7 +132,7 @@
                     android:id="@+id/view_pager_details"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingBottom="10dp" />
+                    android:paddingBottom="5dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

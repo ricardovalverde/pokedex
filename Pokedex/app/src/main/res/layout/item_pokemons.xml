@@ -25,9 +25,10 @@
 
         <TextView
             android:id="@+id/text_view_name_pokemon"
-            style="@style/textViewMainCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/bariol"
             android:text="Pokemon"
             android:textColor="@color/black"
@@ -43,8 +44,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/bariol"
-            android:textColor="@color/text_gray"
-            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             tools:text="Pokemons"
             tools:textColor="@color/text_gray" />
 

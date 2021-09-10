@@ -30,12 +30,19 @@ class PokemonAdapter(
     }
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-        val pos = holder.adapterPosition
         holder.setIsRecyclable(false)
-        holder.bind(list_pokemons[pos], binding, onItemClickListener)
+        holder.bind(list_pokemons[position], binding, onItemClickListener)
     }
 
     override fun getItemCount() = list_pokemons.count()
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
 
     override fun getFilter(): Filter {
         return filterObj
@@ -47,7 +54,7 @@ class PokemonAdapter(
             val filteredList: MutableList<Pokemon> = arrayListOf()
 
             if (charSequence.toString().isEmpty()) {
-                filteredList.addAll(listPokemonsComplete.sortedBy { pokemon -> pokemon.id })
+                filteredList.addAll(listPokemonsComplete)
             } else {
                 for (pokemon in listPokemonsComplete) {
 
@@ -72,6 +79,7 @@ class PokemonAdapter(
             list_pokemons.clear()
             list_pokemons.addAll(filterResults?.values as Collection<Pokemon>)
             notifyDataSetChanged()
+
         }
     }
 

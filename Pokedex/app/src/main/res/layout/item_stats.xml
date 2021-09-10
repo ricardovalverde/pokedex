@@ -33,7 +33,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/linear_progress_details"
         app:layout_constraintEnd_toStartOf="@+id/linear_progress_details"
         app:layout_constraintTop_toTopOf="@+id/linear_progress_details"
-        app:layout_constraintVertical_bias="0.473"
         tools:text="20"
         tools:textColor="@color/black" />
 
