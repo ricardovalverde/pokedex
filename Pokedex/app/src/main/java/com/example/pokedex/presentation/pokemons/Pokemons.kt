@@ -103,7 +103,7 @@ class Pokemons : AppCompatActivity() {
 
     private fun setViewModel(viewModel: PokemonsViewModel) {
 
-        viewModel.pokemonsLiveData.observe(this, {
+        viewModel.pokemonsLiveData.observe(this) {
 
             it?.let { pokemons ->
                 pokemons.sortBy { pokemon -> pokemon.id }
@@ -129,14 +129,14 @@ class Pokemons : AppCompatActivity() {
                     }
                 }
             }
-        })
+        }
         Colors.setStatusbarColor(this, this.window, R.color.pokemon_logo, null)
         viewModel.viewFlipper.observe(this, Observer {
             Handler(Looper.getMainLooper()).postDelayed({
                 it?.let { viewFlipper ->
                     binding.mainViewFlipper.displayedChild = viewFlipper
                 }
-            }, 2000)
+            }, 5000)
         })
         viewModel.getPokemons()
     }

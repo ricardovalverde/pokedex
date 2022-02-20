@@ -9,7 +9,6 @@ import com.example.pokedex.data.response.stats.BaseResponse
 import com.example.pokedex.data.response.types.TypeResult
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class PokemonBodyResponse(
