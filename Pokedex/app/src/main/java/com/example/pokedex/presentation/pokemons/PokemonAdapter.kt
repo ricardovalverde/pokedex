@@ -40,9 +40,9 @@ class PokemonAdapter(
         return position
     }
 
-    override fun getItemId(position: Int): Long {
+    /*override fun getItemId(position: Int): Long {
         return position.toLong()
-    }
+    }*/
 
     override fun getFilter(): Filter {
         return filterObj

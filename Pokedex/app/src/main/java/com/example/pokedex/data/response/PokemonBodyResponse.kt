@@ -44,7 +44,7 @@ data class PokemonBodyResponse(
     ) {
     fun getPokemon() = Pokemon(
 
-        name = this.name.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
+        name = this.name.capitalize(),
         id = id,
         weight = (this.weight / 10),
         height = (this.height / 10),
