@@ -18,7 +18,7 @@ class SplashScreen : AppCompatActivity() {
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        Images.loadGif(this, R.drawable.sss, binding.imageSplash)
+        Images.loadGif(this, R.drawable.gif_initial, binding.imageSplash)
         Colors.setStatusbarColor(this, this.window, R.color.black, null)
         Handler(Looper.getMainLooper()).postDelayed({
             val intent: Intent = Intent(this, MainActivity::class.java)
